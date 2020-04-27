@@ -43,21 +43,21 @@ public class ApplicationConfiguration {
 		return new ApplicationInformation(baseUrl);
 	}
 
-	@Bean
-	@ConditionalOnProperty("KUBERNETES_SERVICE_HOST")
-	public ApplicationInformation kubernetesApplicationInformation(Environment environment) {
-		String uri = environment.getProperty("KUBERNETES_SERVICE_HOST");
-		String port = environment.getProperty("KUBERNETES_SERVICE_PORT");
-
-		String baseUrl = UriComponentsBuilder.newInstance()
-				.scheme("https")
-				.host(uri)
-				.port(port)
-				.build()
-				.toUriString();
-
-		return new ApplicationInformation(baseUrl);
-	}
+//	@Bean
+//	@ConditionalOnProperty("KUBERNETES_SERVICE_HOST")
+//	public ApplicationInformation kubernetesApplicationInformation(Environment environment) {
+//		String uri = environment.getProperty("KUBERNETES_SERVICE_HOST");
+//		String port = environment.getProperty("KUBERNETES_SERVICE_PORT");
+//
+//		String baseUrl = UriComponentsBuilder.newInstance()
+//				.scheme("https")
+//				.host(uri)
+//				.port(port)
+//				.build()
+//				.toUriString();
+//
+//		return new ApplicationInformation(baseUrl);
+//	}
 
 	@Bean
 	@ConditionalOnMissingBean(ApplicationInformation.class)
