@@ -72,14 +72,27 @@ export username=d16f98a7-fe1a-4a81-9271-ca691f0038f8
 
 Test api calls
 ```bash
+# Add book
 curl {$uri}/books -u {$username}:{$password} -H "Content-Type: application/json" -X PUT -d '{"isbn":"978-1617292545","title":"Spring Boot in Action", "author":"Craig Walls"}'
 
+# Add book
+curl {$uri}/books -u {$username}:{$password} -H "Content-Type: application/json" -X PUT -d '{"isbn":"978-1784393021","title":"Learning Spring Boot", "author":"Greg L. Turnquist"}'
+
+# List books
+curl {$uri} -u {$username}:{$password} -H "Content-Type: application/json"
+
+# Delete book
+curl {$uri}/books/e44db6d7-506a-48e4-9446-44301dd559e6 -u {$username}:{$password} -H "Content-Type: application/json" -X DELETE
+
+# List books
+curl {$uri} -u {$username}:{$password} -H "Content-Type: application/json"
 ```
 
 ## Undo installation
 ```bash
-cf delete bookstore
+cf delete-service-key my-bookstore my-bookstore-binding
 cf delete-service my-bookstore
+cf delete bookstore-service-broker -r
 cf delete-service-broker bookstore
 ```
 
